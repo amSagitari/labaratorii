@@ -6,7 +6,7 @@
 
 using namespace std;
 
-bool Is_int(string number)
+bool Is_option(string number)
 {
     if (number.empty())
     {
@@ -46,7 +46,7 @@ int Cin_function()
     string number_s{};
     cin >> number_s;
 
-    while (Is_int(number_s) == false)
+    while (Is_option(number_s) == false)
     {
         cin >> number_s;
     }

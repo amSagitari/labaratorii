@@ -101,7 +101,7 @@ bool Is_sequence(long long number)
     return true;
 }
 
-bool Is_int(string number)
+bool Is_option(string number)
 {
 
     if (number.empty())
@@ -171,7 +171,7 @@ int main()
     cout << "Enter the number.\n";
     cin >> number_s;
 
-    while (Is_int(number_s) == false)
+    while (Is_option(number_s) == false)
     {
         getline(cin, number_s);
     }
@@ -202,7 +202,7 @@ int main()
     cout << "Enter the upper bound for denominators.\n";
     cin >> number_s;
 
-    while (Is_int(number_s) == false)
+    while (Is_option(number_s) == false)
     {
         getline(cin, number_s);
     }
