@@ -5,7 +5,7 @@
 #include <string>
 using namespace std;
 
-int Words_amount(const string &line)
+int Words_amount(string &line)
 {
     stringstream ss(line);
     string word{};
@@ -19,13 +19,18 @@ int Words_amount(const string &line)
     return amount;
 }
 
-bool Reading(const string &file, vector<string> &lines)
+bool Reading(string &file, vector<string> &lines)
 {
     ifstream fin(file);
 
     if (!fin.is_open())
     {
         cerr << "couldn't open the file.\n";
+        return false;
+    }
+
+    if (fin.peek() == EOF) {
+        cerr << "the file's empty.\n";
         return false;
     }
 
@@ -41,7 +46,7 @@ bool Reading(const string &file, vector<string> &lines)
     return true;
 }
 
-int Find_max_words(const vector<string> &lines)
+int Find_max_words(vector<string> &lines)
 {
     int max = 0;
 
@@ -58,7 +63,7 @@ int Find_max_words(const vector<string> &lines)
     return max;
 }
 
-void Find_max_lines(const vector<string> &lines, int max, vector<int> &maxLines)
+void Find_max_lines(vector<string> &lines, int max, vector<int> &maxLines)
 {
     for (int i = 0; i < lines.size() && maxLines.size() < 10; ++i)
     {
@@ -87,7 +92,7 @@ void Cout_result(int max_words, const vector<int> &maxLines, const vector<string
 
 int main()
 {
-    const string file = "epstein_files.txt";
+    string file = "epstein_files.txt";
     vector<string> lines{};
 
     if (!Reading(file, lines))

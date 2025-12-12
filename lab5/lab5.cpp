@@ -5,76 +5,6 @@
 
 using namespace std;
 
-bool Is_double(string number)
-{
-    if (number.empty())
-    {
-        cout << "You entered nothing.\n";
-        cout << "Please enter a real number.\n";
-        return false;
-    }
-
-    int position = 0;
-
-    if (number[0] == '+' || number[0] == '-')
-    {
-        if (number.size() == 1)
-        {
-            cout << "This is not a real number.\n";
-            cout << "Please enter a real number.\n";
-            return false;
-        }
-        position = 1;
-    }
-
-    bool has_point = false;
-
-    for (int i = position; i < number.size(); ++i)
-    {
-        unsigned char ch = static_cast<unsigned char>(number[position]);
-
-        if (ch == '.' || ch == ',')
-        {
-            if (has_point)
-            {
-                cout << "This is not a real number.\n";
-                cout << "Please enter a real number.\n";
-                return false;
-            }
-            has_point = true;
-        }
-        else if (!isdigit(ch))
-        {
-            cout << "This is not a real number.\n";
-            cout << "Please enter a real number.\n";
-            return false;
-        }
-    }
-
-    return true;
-}
-
-double Read_double()
-{
-    string number_s{};
-    cin >> number_s;
-
-    while (!Is_double(number_s))
-    {
-        cin >> number_s;
-    }
-
-    for (size_t i = 0; i < number_s.size(); ++i)
-    {
-        if (number_s[i] == ',')
-        {
-            number_s[i] = '.';
-        }
-    }
-
-    return stod(number_s);
-}
-
 double Integral1(double x)
 {
     return x * atan(x);
@@ -171,16 +101,16 @@ double Integrate_simpson(double (*function)(double), double a, double b, double 
 int main()
 {
     cout << "Enter desired eps.\n";
-    double eps = Read_double();
+    double eps{};
+    cin >> eps;
 
-    if (eps <= 0.0)
+    while(!cin) 
     {
-        cout << "Accuracy must be positive.\n";
-        return 0;
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "This is not a double value. Please enter a double value. \n";
+        cin >> eps;
     }
-
-    cout.setf(ios::fixed);
-    cout << setprecision(7);
 
     int n_right = 0;
     int n_simpson = 0;

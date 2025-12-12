@@ -6,54 +6,6 @@
 
 using namespace std;
 
-bool Is_option(string number)
-{
-    if (number.empty())
-    {
-        cout << "You entered nothing.\n";
-        cout << "Please enter an integer number.\n";
-        return false;
-    }
-
-    int position = 0;
-
-    if (number[0] == '+' || number[0] == '-')
-    {
-        if (number.size() == 1)
-        {
-            cout << "This is not an integer number.\n";
-            cout << "Please enter an integer number.\n";
-            return false;
-        }
-        position = 1;
-    }
-
-    for (; position < (int)number.size(); ++position)
-    {
-        if (!isdigit(static_cast<unsigned char>(number[position])))
-        {
-            cout << "This is not an integer number.\n";
-            cout << "Please enter an integer number.\n";
-            return false;
-        }
-    }
-
-    return true;
-}
-
-int Cin_function()
-{
-    string number_s{};
-    cin >> number_s;
-
-    while (Is_option(number_s) == false)
-    {
-        cin >> number_s;
-    }
-
-    return stoi(number_s);
-}
-
 void Cout_matrix(const vector<vector<int>> &matrix)
 {
     int rows = matrix.size();
@@ -100,7 +52,7 @@ void Fill_manual(vector<vector<int>> &matrix)
     {
         for (int j = 0; j < columns; ++j)
         {
-            matrix[i][j] = Cin_function();
+            cin >> matrix[i][j];
         }
     }
 }
@@ -178,11 +130,29 @@ void Sorting(vector<vector<int>> &matrix)
 
 int main()
 {
+    int rows{};
     cout << "Enter the number of rows of the matrix.\n";
-    int rows = Cin_function();
+    cin >> rows;
 
+    while (!cin)
+    {
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "This is not an integer. Please enter INTEGER number. \n";
+        cin >> rows;
+    }
+
+    int cols{};
     cout << "Now the number of columns of the matrix.\n";
-    int cols = Cin_function();
+    cin >> cols;
+
+    while (!cin)
+    {
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "This is not an integer. Please enter INTEGER number. \n";
+        cin >> cols;
+    }
 
     if (rows <= 0 || cols <= 0)
     {
@@ -196,12 +166,15 @@ int main()
     cout << "1 - input from keyboard\n";
     cout << "2 - fill with random numbers\n";
 
-    int choice = Cin_function();
+    int choice{};
+    cin >> choice;
 
     while (choice != 1 && choice != 2)
     {
-        cout << "There is no such option.\n";
-        choice = Cin_function();
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "This is not a viable option. \n";
+        cin >> choice;
     }
 
     if (choice == 1)
@@ -211,10 +184,26 @@ int main()
     else
     {
         cout << "Enter the left bound of the interval.\n";
-        int a = Cin_function();
+        int a{};
+        cin >> a;
+        while (!cin)
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "This is not an integer. Please enter INTEGER number. \n";
+            cin >> a;
+        }
 
         cout << "Enter the right bound of the interval.\n";
-        int b = Cin_function();
+
+        int b{};
+        while (!cin)
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "This is not an integer. Please enter INTEGER number. \n";
+            cin >> b;
+        }
 
         Fill_random(matrix, a, b);
     }
@@ -224,7 +213,7 @@ int main()
 
     long long sum = Sum_columns(matrix);
 
-    cout << "\nSum of elements in columns that contain at least one zero: " << sum << endl;
+    cout << "\nSum of elements in columns that contain at least one zero: " << sum << '\n';
 
     Sorting(matrix);
 

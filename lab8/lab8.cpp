@@ -43,8 +43,6 @@ bool Is_armstrong(const string &word)
         return false;
     }
 
-    int n = word.size();
-
     long long number = 0;
     for (char ch : word)
     {
@@ -54,10 +52,10 @@ bool Is_armstrong(const string &word)
 
     long long sum = 0;
 
-    for (int i = 0; i < n; ++i)
+    for (int i = 0; i < word.size(); ++i)
     {
         int digit = word[i] - '0';
-        sum += static_cast<long long>(pow(digit, n));
+        sum += static_cast<long long>(pow(digit, word.size()));
     }
 
     return sum == number;
@@ -66,42 +64,40 @@ bool Is_armstrong(const string &word)
 string Find_armstrong_words(const string &line)
 {
     string result{};
-    string current_word{};
+    string current_num{};
 
     for (int i = 0; i < line.size(); ++i)
     {
-        char symbol = line[i];
-
-        if (Is_separator(symbol))
+        if (Is_separator(line[i]))
         {
-            if (!current_word.empty())
+            if (!current_num.empty())
             {
-                if (Is_armstrong(current_word))
+                if (Is_armstrong(current_num))
                 {
                     if (!result.empty())
                     {
                         result += ' ';
                     }
-                    result += current_word;
+                    result += current_num;
                 }
-                current_word.clear();
+                current_num.clear();
             }
         }
         else
         {
-            current_word += symbol;
+            current_num += line[i];
         }
     }
 
-    if (!current_word.empty())
+    if (!current_num.empty())
     {
-        if (Is_armstrong(current_word))
+        if (Is_armstrong(current_num))
         {
             if (!result.empty())
             {
                 result += ' ';
             }
-            result += current_word;
+            result += current_num;
         }
     }
 

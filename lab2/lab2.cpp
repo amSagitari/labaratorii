@@ -101,40 +101,6 @@ bool Is_sequence(long long number)
     return true;
 }
 
-bool Is_option(string number)
-{
-
-    if (number.empty())
-    {
-        cout << "You haven't entered anything.\n";
-        cout << "Enter the number.\n";
-        return false;
-    }
-
-    int position{};
-    while (!isalnum(number[position]))
-    {
-        ++position;
-        if (position > number.size())
-        {
-            break;
-        }
-    }
-    position = 0;
-
-    for (position; position < number.size(); ++position)
-    {
-        if (!isdigit(number[position]))
-        {
-            cout << "This is not an integer.\n";
-            cout << "Enter the number.\n";
-            return false;
-        }
-    }
-
-    return true;
-}
-
 void Fractions(long long number)
 {
     long long N = number - 1;
@@ -166,17 +132,18 @@ void Fractions(long long number)
 
 int main()
 {
-    string number_s{};
+    long long number{};
 
     cout << "Enter the number.\n";
-    cin >> number_s;
+    cin >> number;
 
-    while (Is_option(number_s) == false)
+    while (!cin)
     {
-        getline(cin, number_s);
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "This is not an integer. Please enter INTEGER number. \n";
+        cin >> number;
     }
-
-    long long number = stoll(number_s);
 
     cout << "Modified number: " << Addition(number) << '\n';
     cout << "Here are your friendly numbeers: ";
@@ -199,15 +166,19 @@ int main()
     }
     cout << endl;
 
+    long long denominator{1};
+    
     cout << "Enter the upper bound for denominators.\n";
-    cin >> number_s;
+    cin >> denominator;
 
-    while (Is_option(number_s) == false)
+    while (!cin)
     {
-        getline(cin, number_s);
+        denominator = 1;
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "This is not an integer. Please enter INTEGER number.\n";
+        cin >> denominator;
     }
-
-    long long denominator = stoll(number_s);
 
     if (denominator <= 2)
     {
