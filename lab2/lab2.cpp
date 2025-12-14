@@ -118,13 +118,13 @@ void Fractions(long long number)
         }
 
         long long k = (N + b) / d;
-        long long e = k * c - a;
-        long long f = k * d - b;
+        long long p = k * c - a;
+        long long q = k * d - b;
 
         a = c;
         b = d;
-        c = e;
-        d = f;
+        c = p;
+        d = q;
     }
 
     cout << endl;

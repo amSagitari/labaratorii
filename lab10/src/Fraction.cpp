@@ -21,7 +21,7 @@ Fraction::Fraction(int num, int denom)
 
 Fraction::Fraction(const Fraction& other) : denominator(other.denominator), numerator(other.numerator) {};
 
-Fraction::Fraction(Fraction&& other) noexcept : denominator(other.denominator), numerator(other.numerator)
+Fraction::Fraction(Fraction&& other) : denominator(other.denominator), numerator(other.numerator)
 {
     other.denominator = 1;
     other.numerator = 0;
@@ -83,7 +83,7 @@ Fraction& Fraction::operator=(const Fraction& other)
     return *this;
 };
 
-Fraction& Fraction::operator=(Fraction&& other) noexcept
+Fraction& Fraction::operator=(Fraction&& other)
 {
         numerator = other.numerator;
         denominator = other.denominator;

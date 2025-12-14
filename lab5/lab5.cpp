@@ -119,25 +119,25 @@ int main()
     double result_simpson_1 = Integrate_simpson(Integral1, 0.0, 1.7, eps, n_simpson);
 
     cout << "\nIntegral 1:\n";
-    cout << "Right rectangles: I ≈ " << result_right_1 << ",  final n = " << n_right << endl;
-    cout << "Simpson method: I ≈ " << result_simpson_1 << ", final n = " << n_simpson << endl;
-    cout << "Reference value: I ≈ 1.1709955\n";
+    cout << "Right rectangles: I = " << result_right_1 << ",  final n = " << n_right << endl;
+    cout << "Simpson method: I = " << result_simpson_1 << ", final n = " << n_simpson << endl;
+    cout << "Reference value: I = 1.1709955\n";
 
     double result_right_2 = Integrate_right_rectangles(Integral2, 0.0, 2.0, eps, n_right);
     double result_simpson_2 = Integrate_simpson(Integral2, 0.0, 2.0, eps, n_simpson);
 
     cout << "\nIntegral 2:\n";
-    cout << "Right rectangles: I ≈ " << result_right_2 << ", final n = " << n_right << endl;
-    cout << "Simpson method: I ≈ " << result_simpson_2 << ", final n = " << n_simpson << endl;
-    cout << "Reference value: I ≈ 1.0656800\n";
+    cout << "Right rectangles: I = " << result_right_2 << ", final n = " << n_right << endl;
+    cout << "Simpson method: I = " << result_simpson_2 << ", final n = " << n_simpson << endl;
+    cout << "Reference value: I = 1.0656800\n";
 
     double result_right_3 = Integrate_right_rectangles(Integral3, -2.0, -1.2, eps, n_right);
     double result_simpson_3 = Integrate_simpson(Integral3, -2.0, -1.2, eps, n_simpson);
 
     cout << "\nIntegral 3:\n";
-    cout << "Right rectangles: I ≈ " << result_right_3 << ", final n = " << n_right << endl;
-    cout << "Simpson method: I ≈ " << result_simpson_3 << ", final n = " << n_simpson << endl;
-    cout << "Reference value: I ≈ 0.2196833\n";
+    cout << "Right rectangles: I = " << result_right_3 << ", final n = " << n_right << endl;
+    cout << "Simpson method: I = " << result_simpson_3 << ", final n = " << n_simpson << endl;
+    cout << "Reference value: I = 0.2196833\n";
 
     return 0;
 }

@@ -17,7 +17,7 @@ public:
     Fraction();
     Fraction(int numerator, int denominator);
     Fraction(const Fraction&);
-    Fraction(Fraction&&) noexcept;
+    Fraction(Fraction&&);
     ~Fraction();
 
     int get_denom() const;
