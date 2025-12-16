@@ -1,42 +1,58 @@
 #include <iostream>
 #include <cmath>
-#include <string>
-#include <vector>
+
 using namespace std;
+
+template <typename T>
+void Check(T &a)
+{
+    while (!cin)
+    {
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "You've entered a string with an improper data type. Please enter a string of the correct data type. \n";
+        cin >> a;
+    }
+}
 
 long long Addition(long long number)
 {
+    long long initial = number;
 
-    long long edited = number;
-
-    int power{};
-    vector<int> frequency = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-
-    while (number != 0)
+    if (number == 0)
     {
-
-        int r = number % 10;
-        number /= 10;
-
-        ++frequency[r];
-        ++power;
+        return 0;
     }
 
-    int index{};
-    int maximum = frequency[0];
+    int bestDigit = 0;
+    int bestFreq = -1;
 
-    for (int i = 0; i < 10; ++i)
+    for (int d = 0; d <= 9; ++d)
     {
-        if (frequency[i + 1] >= maximum)
+        int frequency = 0;
+
+        for (long long i = number; i > 0; i /= 10)
         {
-            index = i + 1;
-            maximum = frequency[i + 1];
+            if (i % 10 == d)
+            {
+                ++frequency;
+            }
+        }
+
+        if (frequency > bestFreq || (frequency == bestFreq && d > bestDigit))
+        {
+            bestFreq = frequency;
+            bestDigit = d;
         }
     }
 
-    edited = edited * 10 + index + index * pow(10, power + 1);
+    int power{};
+    for (long long i = number; i > 0; i /= 10)
+    {
+        ++power;
+    }
 
-    return edited;
+    return initial * 10 + bestDigit + bestDigit * pow(10, power + 1);
 }
 
 long long Find_divisors(long long number)
@@ -79,25 +95,21 @@ void Gregarious_numbers(long long number)
 bool Is_sequence(long long number)
 {
 
-    string number_s = to_string(number);
-    size_t size = number_s.size();
-    vector<int> digits(size);
-    int digit{};
+    int d1 = number % 10;
+    number /= 10;
 
-    for (int i = 0; i < size; ++i)
+    while (number != 0)
     {
-        digit = number % 10;
-        number /= 10;
-        digits[i] = digit;
-    }
+        int d2 = number % 10;
 
-    for (int i = size; i > 0; --i)
-    {
-        if (digits[i] >= digits[i - 1])
+        if (d1 >= d2)
         {
             return false;
         }
+        d1 = d2;
+        number /= 10;
     }
+
     return true;
 }
 
@@ -136,38 +148,50 @@ int main()
 
     cout << "Enter the number.\n";
     cin >> number;
+    Check(number);
 
-    while (!cin)
+    if (number < 0)
     {
-        cin.clear();
-        cin.ignore(10000, '\n');
-        cout << "This is not an integer. Please enter INTEGER number. \n";
-        cin >> number;
+        cout << "Entered number is negative.";
+        return 0;
     }
 
     cout << "Modified number: " << Addition(number) << '\n';
     cout << "Here are your friendly numbeers: ";
     Gregarious_numbers(number);
-    cout << endl;
+    cout << '\n';
 
-    int a{};
-    int b{};
+    long long a{};
+    long long b{};
 
     cout << "Now enter 2 numbers as borders of a series: \n";
     cin >> a >> b;
+    Check(a);
+    Check(b);
+
+    if (a < 0 || b < 0)
+    {
+        cout << "Entered value(s) is(are) negative.";
+        return 0;
+    }
+
+    long long temp = min(a, b);
+    b = max(a, b);
+    a = temp;
+
     cout << "Here are the 'sequential' numbers between a and b: ";
 
-    for (int i = a; i <= b; ++i)
+    for (long long i = a; i <= b; ++i)
     {
         if (Is_sequence(i) == true)
         {
             cout << i << ' ';
         }
     }
-    cout << endl;
+    cout << '\n';
 
     long long denominator{1};
-    
+
     cout << "Enter the upper bound for denominators.\n";
     cin >> denominator;
 

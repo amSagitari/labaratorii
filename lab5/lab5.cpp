@@ -1,7 +1,5 @@
 #include <iostream>
 #include <cmath>
-#include <string>
-#include <iomanip>
 
 using namespace std;
 
@@ -110,6 +108,12 @@ int main()
         cin.ignore(10000, '\n');
         cout << "This is not a double value. Please enter a double value. \n";
         cin >> eps;
+    }
+
+    if (eps <= 0) 
+    {
+        cout << "Deviation can't be negative or 0.";
+        return 0;
     }
 
     int n_right = 0;

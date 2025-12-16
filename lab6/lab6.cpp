@@ -166,6 +166,11 @@ void Option_one()
     cin >> size;
     Check(size);
 
+    if (size < 0) 
+    {
+      throw runtime_error("Size can't be negative");
+    }
+
     switch (option)
     {
     case 1:
@@ -231,6 +236,11 @@ void Option_two()
     cout << "Now enter the size of an array.\n";
     cin >> size;
     Check(size);
+
+    if (size < 0) 
+    {
+      throw runtime_error("Size can't be negative");
+    }
 
     switch (option)
     {
@@ -367,6 +377,12 @@ int main()
 
     cin >> status;
     Check(status);
+
+    if (status < 0) 
+    {
+      cout << "Chosen option can't be negative.";
+      return 0;
+    }
 
     switch (status)
     {

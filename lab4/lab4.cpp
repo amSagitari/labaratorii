@@ -6,7 +6,13 @@
 
 using namespace std;
 
-void Cout_matrix(const vector<vector<int>> &matrix)
+template <typename T>
+void Check(T value) 
+{
+
+}
+
+void Print_matrix(const vector<vector<int>> &matrix)
 {
     int rows = matrix.size();
     if (rows == 0)
@@ -25,7 +31,7 @@ void Cout_matrix(const vector<vector<int>> &matrix)
     }
 }
 
-int Mersenne_twister(int a, int b)
+int Use_Mersenne_twister(int a, int b)
 {
     if (a > b)
     {
@@ -66,7 +72,7 @@ void Fill_random(vector<vector<int>> &matrix, int left, int right)
     {
         for (int j = 0; j < columns; ++j)
         {
-            matrix[i][j] = Mersenne_twister(left, right);
+            matrix[i][j] = Use_Mersenne_twister(left, right);
         }
     }
 }
@@ -209,7 +215,7 @@ int main()
     }
 
     cout << "\nHere's your matrix:\n";
-    Cout_matrix(matrix);
+    Print_matrix(matrix);
 
     long long sum = Sum_columns(matrix);
 
@@ -218,7 +224,7 @@ int main()
     Sorting(matrix);
 
     cout << "\nMatrix after sorting the rows\n";
-    Cout_matrix(matrix);
+    Print_matrix(matrix);
 
     return 0;
 }

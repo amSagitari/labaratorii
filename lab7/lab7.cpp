@@ -107,6 +107,12 @@ int main()
     cout << "Enter separator characters: ";
     getline(cin, separators);
 
+    if (separators.empty()) 
+    {
+      cout << "You haven't enetered any separator";
+      return 0;
+    }
+
     cout << "Enter the string (length <= 300):\n";
     getline(cin, line);
 
